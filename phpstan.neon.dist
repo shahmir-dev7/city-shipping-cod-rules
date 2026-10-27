@@ -1,0 +1,15 @@
+parameters:
+    level: 6
+    paths:
+        - includes
+        - city-shipping-cod-rules.php
+        - uninstall.php
+    scanFiles:
+        - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
+    ignoreErrors:
+        - '#WP_CLI#'
+        # The WooCommerce stubs type WC()->session as always set. At runtime WooCommerce leaves it null in some
+        # contexts (before the cart loads, some background requests), so Cod::add_fee() checks.
+        -
+            identifier: function.alreadyNarrowedType
+            path: %currentWorkingDirectory%/includes/Cod.php
